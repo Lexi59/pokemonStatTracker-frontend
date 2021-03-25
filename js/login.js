@@ -34,7 +34,7 @@ document.querySelector('#loginForm').addEventListener('submit',(e)=>{
             throw response;
         }).then((result)=>{
             localStorage.token = result.token;
-            window.location.href = "./pages/dashboard.html";
+            window.location.href = "../pages/dashboard.html";
         }).catch((error)=>{
             error.text().then(msg =>{
                 logErrorMessage(JSON.parse(msg).message);

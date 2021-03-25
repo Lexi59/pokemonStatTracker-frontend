@@ -41,7 +41,7 @@ document.querySelector('#signupForm').addEventListener('submit',(e)=>{
                 throw response;
         }).then((result)=>{
             localStorage.token = result.token;
-            window.location.replace("./pages/dashboard.html");
+            window.location.replace("../pages/dashboard.html");
         }).catch((error)=>{
             error.text().then(msg =>{
                 logErrorMessage(JSON.parse(msg).message);
