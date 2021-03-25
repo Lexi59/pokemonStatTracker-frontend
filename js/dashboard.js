@@ -23,7 +23,7 @@ function checkUsername(){
         }
         else{
             localStorage.removeItem('token');
-            window.location.replace('../pages/login.html');
+            window.location.replace('./pages/login.html');
         }
     });
 }
