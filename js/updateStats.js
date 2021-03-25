@@ -46,7 +46,6 @@ document.querySelector('#statForm').addEventListener('submit',(e)=>{
             }
         }).then(res => res.json())
             .then((updatedUser)=>{
-            
         });
         document.querySelector('#XP').value = '';
         document.querySelector('#catches').value = '';

@@ -33,7 +33,8 @@ function checkForStats(){
         headers: {
             'content-type':'application/json',
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res => res.json()).then(stats=>{
         if(stats){
             document.querySelector('#overallStats').style.display = 'block';
