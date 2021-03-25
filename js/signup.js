@@ -35,8 +35,7 @@ document.querySelector('#signupForm').addEventListener('submit',(e)=>{
             body: JSON.stringify(user),
             headers: {
                 'content-type':'application/json'
-            },
-            mode:'no-cors'
+            }
         }).then((response) => {
             if(response.ok){return response.json();}
                 throw response;
