@@ -32,7 +32,8 @@ function checkForStats(){
     fetch(API_URL+'api/v1/records/stats',{
         headers: {
             'content-type':'application/json',
-            authorization: 'Bearer ' + localStorage.token
+            authorization: 'Bearer ' + localStorage.token,
+            mode:'no-cors'
         }
     }).then(res => res.json()).then(stats=>{
         if(stats){
@@ -62,7 +63,8 @@ function getCalculatedStats(){
         headers: {
             'content-type':'application/json',
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res => res.json()).then(calculatedStats=>{
         
         document.querySelector('#levelUpDate').innerHTML = '<strong>Predicted Level Up:</strong> ' + getDaysToLevelUp(calculatedStats.totalXP,calculatedStats.XPMonth/30);
