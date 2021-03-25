@@ -63,7 +63,8 @@ function getCalculatedStats(){
         headers: {
             'content-type':'application/json',
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res => res.json()).then(calculatedStats=>{
         
         document.querySelector('#levelUpDate').innerHTML = '<strong>Predicted Level Up:</strong> ' + getDaysToLevelUp(calculatedStats.totalXP,calculatedStats.XPMonth/30);
@@ -128,7 +129,8 @@ function loadChart(){
         headers: {
             'content-type':'application/json',
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res => res.json()).then(data=>{
         console.log(data);
         var chart = new Chart(xpChart, {

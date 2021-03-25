@@ -5,7 +5,8 @@ function checkUsername(){
     fetch(API_URL, {
         headers:{
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res =>res.json())
     .then((result)=>{
         if(result.user){
@@ -43,7 +44,8 @@ document.querySelector('#statForm').addEventListener('submit',(e)=>{
             headers: {
                 'content-type':'application/json',
                 authorization: 'Bearer ' + localStorage.token
-            }
+            },
+            mode:'no-cors'
         }).then(res => res.json())
             .then((updatedUser)=>{
         });

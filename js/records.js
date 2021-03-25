@@ -6,7 +6,8 @@ function checkUsername(){
     fetch(API_URL, {
         headers:{
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res =>res.json())
     .then((result)=>{
         if(result.user){
@@ -58,7 +59,8 @@ document.querySelector('#recordForm').addEventListener('submit',(e)=>{
             headers: {
                 'content-type':'application/json',
                 authorization: 'Bearer ' + localStorage.token
-            }
+            },
+            mode:'no-cors'
         }).then((response) => {
             if(response.ok){ 
                 getRecords(); 
@@ -99,7 +101,8 @@ function getRecords(){
         headers: {
             'content-type':'application/json',
             authorization: 'Bearer ' + localStorage.token
-        }
+        },
+        mode:'no-cors'
     }).then(res => res.json()).then(records=>{
         document.querySelector("#recordCards tbody").innerHTML = ""; 
 
