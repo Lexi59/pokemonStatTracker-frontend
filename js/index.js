@@ -8,11 +8,11 @@ else{
 function logButton(){
     if(localStorage.token){
         localStorage.removeItem("token");
-        window.location.href('../index.html')
+        window.location.replace('../index.html')
         document.querySelector('#logout').textContent = 'Log In';
     }
     else{
-      window.location.href('../pages/login.html');
+      window.location.replace('../pages/login.html');
       document.querySelector('#logout').textContent = 'Log Out';
     }
   }

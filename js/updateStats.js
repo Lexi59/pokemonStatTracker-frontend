@@ -13,7 +13,7 @@ function checkUsername(){
         }
         else{
             localStorage.removeItem('token');
-            window.location.href('../pages/login.html');
+            window.location.replace('../pages/login.html');
         }
     });
 }
@@ -51,7 +51,7 @@ document.querySelector('#statForm').addEventListener('submit',(e)=>{
         document.querySelector('#XP').value = '';
         document.querySelector('#catches').value = '';
         document.querySelector('#kms').value = '';
-        window.location.href('dashboard.html');
+        window.location.replace('dashboard.html');
     }
     
 });
