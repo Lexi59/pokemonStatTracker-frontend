@@ -1,0 +1,35 @@
+.jumbotron{
+    width: 80%;
+    margin: 1em auto;
+}
+form{
+    width: 60%;
+    margin: 1em auto;
+}
+#recordCards{
+    width:80%;
+    margin:auto;
+}
+.card{
+    height: 100%; 
+    float:left;
+    width: 23%;
+    margin: 1%;
+}
+
+#overallStats{
+    width: 80%;
+    margin: auto;
+}
+.clear{
+    clear:both;
+}
+#chartDiv{
+    width:80%;
+    margin: auto;
+}
+.chart{
+    width: 50%;
+    margin: auto;
+    float:left;
+}

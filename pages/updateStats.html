@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel='stylesheet' href="../styles/bootstrap.min.css">
+    <link rel='stylesheet' href="../styles/main.css">
+    <link rel='icon' href = '../styles/favicon.ico'>
+    <script>
+      if(!localStorage.token){window.location.replace('login.html');}
+    </script>
+</head>
+<body onload='checkUsername();'>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="../index.html">Stat Tracker</a>
+        </nav>
+    </header>
+    <form id = 'statForm'>
+        <fieldset>
+          <legend>Update Stats</legend>
+          <div id='error'></div>
+          <div class="form-group">
+            <label for="XP">Total XP</label>
+            <input type="text" class="form-control" id="XP" placeholder="XP">
+          </div>
+          <div class="form-group">
+            <label for="catches">Total Catches</label>
+            <input type="text" class="form-control" id="catches" placeholder="Catches">
+          </div>
+          <div class="form-group">
+            <label for="kms">Total KMs</label>
+            <input type="text" class="form-control" id="kms" placeholder="KMs">
+          </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+      </form>
+    <script src='../js/updateStats.js'></script>
+  </body>
+</html>
