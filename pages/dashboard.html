@@ -9,13 +9,13 @@
     <link rel='stylesheet' href="../styles/main.css">
     <link rel='icon' href = '../styles/favicon.ico'>
     <script>
-      if(!localStorage.token){window.location.replace('login.html');}
+      if(!localStorage.token){window.location.href('login.html');}
     </script>
 </head>
 <body onload = 'checkUsername();'>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="../index.html">Stat Tracker</a>
+            <a class="navbar-brand" href="./index.html">Stat Tracker</a>
             <button id= 'logout' class="btn btn-secondary my-2 my-sm-0 ml-auto" type="submit" onclick = 'logButton()'></button>
         </nav>
     </header>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class = 'text-center clear'>
-            <button class = "btn btn-success" onclick='window.location.replace("records.html");'>Add Record</button>
+            <button class = "btn btn-success" onclick='window.location.href("records.html");'>Add Record</button>
         </div>
         
         <div id='chartDiv'>
