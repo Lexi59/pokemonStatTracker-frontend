@@ -88,7 +88,7 @@ function getCalculatedStats(){
         card.appendChild(createCardPiece('<strong>XP:</strong>  ' + calculatedStats.XPMonth));
         card.appendChild(createCardPiece('<strong>Catches:</strong>  ' + calculatedStats.catchesMonth));
         card.appendChild(createCardPiece('<strong>KMs:</strong>  ' + calculatedStats.KMsMonth.toFixed(1)));
-
+        console.log(calculatedStats);
 
     }).catch((error)=>{
         error.text().then(msg =>{
