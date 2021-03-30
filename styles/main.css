@@ -33,3 +33,19 @@ form{
     margin: auto;
     float:left;
 }
+
+/*mobile portrait to mobile landscape*/
+@media only screen and (max-width: 549px){
+    body{
+        font-size:80%;
+    }
+    .card{
+        float:none;
+        width: 100%;
+        margin:auto;
+    }
+    .chart{
+        float:none;
+        width: 100%;
+    }
+}
