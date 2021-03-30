@@ -136,8 +136,8 @@ function loadChart(){
                     labels: data.labels,
                     datasets: [{
                         label: 'XP',
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgb(255, 0, 0)',
+                        borderColor: 'rgb(255, 0, 0)',
                         data: data.XPdata
                     }]
                 },
@@ -149,8 +149,8 @@ function loadChart(){
                 labels: data.labels,
                 datasets: [{
                     label: 'KMs',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(255, 0, 0)',
+                    borderColor: 'rgb(255, 0, 0)',
                     data: data.kmsData
                 }]
             },
@@ -162,8 +162,8 @@ function loadChart(){
                 labels: data.labels,
                 datasets: [{
                     label: 'Catches',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(255, 0, 0)',
+                    borderColor: 'rgb(255, 0, 0)',
                     data: data.catchesData
                 }]
             },
@@ -175,8 +175,8 @@ function loadChart(){
                 labels: data.labels,
                 datasets: [{
                     label: 'Stardust',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(255, 0, 0)',
+                    borderColor: 'rgb(255, 0, 0)',
                     data: data.stardustData
                 }]
             },
