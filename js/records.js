@@ -115,6 +115,7 @@ function getRecords(){
             if(records[i].comment){
                 row.innerHTML+=`<td>`+records[i].comment+`</td>`;
             }
+            else{row.innerHTML += `<td></td>`;}
             document.querySelector('#recordCards tbody').appendChild(row);
         }
     }).catch((error)=>{
