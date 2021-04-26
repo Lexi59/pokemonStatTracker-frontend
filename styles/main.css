@@ -33,6 +33,10 @@ form{
     margin: auto;
     float:left;
 }
+.table-buttons{
+    margin-right: .1rem;
+    padding: .4rem;
+}
 
 /*mobile portrait to mobile landscape*/
 @media only screen and (max-width: 549px){

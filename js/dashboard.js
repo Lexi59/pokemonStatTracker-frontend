@@ -141,7 +141,17 @@ function loadChart(){
                         data: data.XPdata
                     }]
                 },
-                options: {}
+                options: {
+                    scales:{
+                        xAxes:[{
+                            ticks:{
+                                display: true,
+                                autoSkip: true,
+                                maxTicksLimit: 20
+                            }
+                        }]
+                    }
+                }
             });
         chart = new Chart(kmsChart, {
             type: 'line',
@@ -154,7 +164,17 @@ function loadChart(){
                     data: data.kmsData
                 }]
             },
-            options: {}
+            options: {
+                scales:{
+                    xAxes:[{
+                        ticks:{
+                            display: true,
+                            autoSkip: true,
+                            maxTicksLimit: 20
+                        }
+                    }]
+                }
+            }
         });
         chart = new Chart(catchesChart, {
             type: 'line',
@@ -167,7 +187,17 @@ function loadChart(){
                     data: data.catchesData
                 }]
             },
-            options: {}
+            options: {
+                scales:{
+                    xAxes:[{
+                        ticks:{
+                            display: true,
+                            autoSkip: true,
+                            maxTicksLimit: 20
+                        }
+                    }]
+                }
+            }
         });
         chart = new Chart(stardustChart, {
             type: 'line',
@@ -180,7 +210,17 @@ function loadChart(){
                     data: data.stardustData
                 }]
             },
-            options: {}
+            options: {
+                scales:{
+                    xAxes:[{
+                        ticks:{
+                            display: true,
+                            autoSkip: true,
+                            maxTicksLimit: 20
+                        }
+                    }]
+                }
+            }
         });
 
     }).catch((error)=>{

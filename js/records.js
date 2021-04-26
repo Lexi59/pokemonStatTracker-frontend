@@ -1,5 +1,7 @@
 const API_URL = "https://pokemon-stat-tracker.herokuapp.com/";
 
+// add clear form button
+
 document.querySelector('#date').value = new Date().toLocaleDateString("en-US");
 
 function checkUsername(){
@@ -19,6 +21,75 @@ function checkUsername(){
         }
     });
 }
+function editEntry(date){
+    fetch(API_URL+'api/v1/records',{
+        headers: {
+            'content-type':'application/json',
+            authorization: 'Bearer ' + localStorage.token
+        }
+    }).then(res => res.json()).then(records=>{
+        for(var i = 0; i < records.length; i++){
+            if(records[i].date == date){
+                document.querySelector('#date').value = new Date(date).toLocaleDateString();
+                document.querySelector('#totalOrNew').value = 'Yes';
+                document.querySelector('#XP').value = records[i].XP;
+                document.querySelector('#catches').value = records[i].catches;
+                document.querySelector('#stardust').value = records[i].stardust;
+                document.querySelector('#kms').value = records[i].kms;
+                document.querySelector('#luckyEggs').value = records[i].luckyEggs;
+                document.querySelector('#comment').value = records[i].comment;
+            }
+        }
+    }).catch((error)=>{
+        error.text().then(msg =>{
+            logErrorMessage(JSON.parse(msg).message);
+            console.error(JSON.parse(msg).message);
+        });
+    });
+}
+function deleteEntry(date){
+    if(confirm("You are deleting the record from " + new Date(date).toLocaleDateString() + ". Are you sure? This action cannot be undone.")){
+        fetch(API_URL+'api/v1/records/remove',{
+            method: 'POST',
+            body: JSON.stringify(date),
+            headers: {
+                'content-type':'application/json',
+                authorization: 'Bearer ' + localStorage.token
+            }
+        }).then((response) => {
+            if(response.ok){ 
+                getRecords(); 
+                document.querySelector('#XP').value = '';
+                document.querySelector('#catches').value = '';
+                document.querySelector('#stardust').value = '';
+                document.querySelector('#kms').value = '';
+                document.querySelector('#luckyEggs').value = '0';
+                document.querySelector('#comment').value = '';
+                return response.json();
+            }
+            throw response;
+            })
+            .then(res => {res.json();})
+            .catch((error)=>{
+                error.text().then(msg =>{
+                    logErrorMessage(JSON.parse(msg).message);
+                    console.error(JSON.parse(msg).message);
+                });
+        });
+    }
+}
+
+document.querySelector('#recordForm').addEventListener('reset',(e)=>{
+    e.preventDefault();
+    document.querySelector('#date').value = new Date().toLocaleDateString();
+    document.querySelector('#totalOrNew').value = 'Yes';
+    document.querySelector('#XP').value = "";
+    document.querySelector('#catches').value = "";
+    document.querySelector('#stardust').value = "";
+    document.querySelector('#kms').value = "";
+    document.querySelector('#luckyEggs').value = 0;
+    document.querySelector('#comment').value = "";
+});
 
 document.querySelector('#recordForm').addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -105,11 +176,11 @@ function getRecords(){
 
         for(var i = 0; i < records.length; i++){
             var row = document.createElement('tr');
-            row.innerHTML = `<td>`+new Date(records[i].date).toDateString()+`</td>`+
+            row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
                         `<td>`+records[i].XP+`</td>`+
                         `<td>`+records[i].catches+`</td>`+
                         `<td>`+records[i].stardust+`</td>`+
-                        `<td>`+records[i].kms+`</td>`+
+                        `<td>`+parseFloat(records[i].kms).toFixed(1)+`</td>`+
                         `<td>`+records[i].luckyEggs+`</td>`;
                         
             if(records[i].comment){
@@ -117,6 +188,7 @@ function getRecords(){
             }
             else{row.innerHTML += `<td></td>`;}
             document.querySelector('#recordCards tbody').appendChild(row);
+            row.innerHTML += `<td><button class="btn btn-success my-2 my-sm-0 ml-auto table-buttons" onclick='editEntry("`+records[i].date+`")'>✏️</button><button class="btn btn-danger my-2 my-sm-0 ml-auto table-buttons" onclick='deleteEntry("`+records[i].date+`")'>🗑️</button></td>`;
         }
     }).catch((error)=>{
         error.text().then(msg =>{
@@ -125,3 +197,4 @@ function getRecords(){
         });
     });
 }
+
