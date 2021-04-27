@@ -49,9 +49,10 @@ function editEntry(date){
 }
 function deleteEntry(date){
     if(confirm("You are deleting the record from " + new Date(date).toLocaleDateString() + ". Are you sure? This action cannot be undone.")){
+        var remove = true;
         fetch(API_URL+'api/v1/records/remove',{
             method: 'POST',
-            body: JSON.stringify(date),
+            body: JSON.stringify({date}),
             headers: {
                 'content-type':'application/json',
                 authorization: 'Bearer ' + localStorage.token
