@@ -65,7 +65,7 @@ function getCalculatedStats(){
         }
     }).then(res => res.json()).then(calculatedStats=>{
         
-        document.querySelector('#levelUpDate').innerHTML = '<strong>Predicted Level Up:</strong> ' + getDaysToLevelUp(calculatedStats.totalXP,calculatedStats.XPWeek/7);
+        document.querySelector('#levelUpDate').innerHTML = '<strong>Predicted Level Up:</strong> ' + getDaysToLevelUp(calculatedStats.totalXP,calculatedStats.averageXP);
 
         var card = document.querySelector('#personalBestsCard');
         card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP));
