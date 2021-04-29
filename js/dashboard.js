@@ -105,7 +105,7 @@ function getLevel(XP){
             return (i+2).toString();
         }
     }
-    if(XP>xpValues[xpValues.length-1]){return "50";}
+    if(XP>=xpValues[xpValues.length-1]){return "50";}
 }
 
 function getDaysToLevelUp(XP, avgXP){
