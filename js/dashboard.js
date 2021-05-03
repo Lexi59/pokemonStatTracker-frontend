@@ -1,6 +1,4 @@
 const API_URL = "https://pokemon-stat-tracker.herokuapp.com/";
-var user;
-var myStats; 
 const xpValues = [1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,65000,
     75000,85000,100000,120000,140000,160000,185000,210000,260000,335000,435000,
     560000,710000,900000,1100000,1350000,1650000,2000000,2500000,3000000,3750000,
@@ -15,11 +13,10 @@ function checkUsername(){
     }).then(res =>res.json())
     .then((result)=>{
         if(result.user){
-            user = result.user
             checkForStats();
             getCalculatedStats();
             loadChart();
-            document.querySelector('#welcome').textContent = "Welcome " + user.username + "!";
+            document.querySelector('#welcome').textContent = "Welcome " + result.user.username + "!";
         }
         else{
             localStorage.removeItem('token');
