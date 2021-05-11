@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <link rel='stylesheet' href="../styles/bootstrap.min.css">
+    <link rel='stylesheet' href="../styles/main.css">
+    <link rel='icon' href = '../styles/favicon.ico'>
+    <script>
+      if(!localStorage.token){window.location.replace('login.html')}
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="../index.html">Stat Tracker</a>
+        </nav>
+    </header>
+    <form data-bitwarden-watching="1" id = 'eventForm'>
+      <fieldset>
+        <legend>Event Dates</legend>
+        <div id='error'></div>
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" class="form-control" id="startDate" placeholder="Enter Start Date" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="date" class="form-control" id="endDate" placeholder="Enter End Date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+    <div id = 'eventStats' style='display: none;'>
+        <h1>Event Stats</h1>
+        <p id='startDateOutput'></p>
+        <p id='endDateOutput'></p>
+        <p id='XP'></p>
+        <p id='catches'></p>
+        <p id='kms'></p>
+        <p id='stardust'></p>
+        <p id='luckyEggs'></p>
+    </div>
+    <script src='../js/range.js'></script>
+  </body>
+</html>

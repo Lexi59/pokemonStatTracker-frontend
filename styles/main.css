@@ -37,7 +37,10 @@ form{
     margin-right: .1rem;
     padding: .4rem;
 }
-
+#eventStats{
+    width: 60%;
+    margin: auto;
+}
 /*mobile portrait to mobile landscape*/
 @media only screen and (max-width: 549px){
     body{

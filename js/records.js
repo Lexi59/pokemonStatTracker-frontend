@@ -174,7 +174,6 @@ function getRecords(){
         }
     }).then(res => res.json()).then(records=>{
         document.querySelector("#recordCards tbody").innerHTML = ""; 
-
         for(var i = 0; i < records.length; i++){
             var row = document.createElement('tr');
             row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
