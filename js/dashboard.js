@@ -64,7 +64,8 @@ function getCalculatedStats(){
     }).then(res => res.json()).then(calculatedStats=>{
         
         document.querySelector('#levelUpDate').innerHTML = '<strong>Predicted Level Up:</strong> ' + getDaysToLevelUp(calculatedStats.totalXP,calculatedStats.averageXP);
-
+        document.querySelector('#level50Date').innerHTML = '<strong>Predicted Level 50:</strong> ' + getDaysTo50(calculatedStats.totalXP,calculatedStats.averageXP);
+        
         var card = document.querySelector('#personalBestsCard');
         card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP));
         var dateString = new Date(calculatedStats.mostXPDay).toLocaleDateString();
@@ -114,6 +115,14 @@ function getDaysToLevelUp(XP, avgXP){
     if(getLevel(XP) == '50'){return "🏆";}
     var XPtoNextLvl = xpValues[parseInt(getLevel(XP))-1]-XP;
     var daysToLevelUp = Math.ceil(XPtoNextLvl/avgXP);
+    var newDate = new Date();
+    newDate.setDate(newDate.getDate() + daysToLevelUp);
+    return newDate.toLocaleDateString();
+}
+function getDaysTo50(XP, avgXP){
+    if(getLevel(XP) == '50'){return "🏆";}
+    var XPto50 = xpValues[xpValues.length-1]-XP;
+    var daysToLevelUp = Math.ceil(XPto50/avgXP);
     var newDate = new Date();
     newDate.setDate(newDate.getDate() + daysToLevelUp);
     return newDate.toLocaleDateString();
