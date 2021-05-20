@@ -1,5 +1,3 @@
-const API_URL = "https://pokemon-stat-tracker.herokuapp.com/";
-
 // add clear form button
 
 document.querySelector('#date').value = new Date().toLocaleDateString("en-US");

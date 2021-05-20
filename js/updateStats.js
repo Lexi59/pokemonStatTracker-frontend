@@ -1,4 +1,3 @@
-const API_URL = "https://pokemon-stat-tracker.herokuapp.com/";
 var user;
 
 function checkUsername(){

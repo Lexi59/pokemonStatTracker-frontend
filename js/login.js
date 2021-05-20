@@ -1,4 +1,4 @@
-const LOGIN_URL = "https://pokemon-stat-tracker.herokuapp.com/auth/login/";
+
 
 document.querySelector('#loginForm').addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -23,7 +23,7 @@ document.querySelector('#loginForm').addEventListener('submit',(e)=>{
             username: username,
             password: password
         };
-        fetch(LOGIN_URL,{
+        fetch(API_URL+'auth/login',{
             method: 'POST',
             body: JSON.stringify(user),
             headers: {

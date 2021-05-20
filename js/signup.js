@@ -1,5 +1,3 @@
-const SIGNUP_URL = "https://pokemon-stat-tracker.herokuapp.com/auth/signup/";
-
 document.querySelector('#signupForm').addEventListener('submit',(e)=>{
     e.preventDefault();
     clearErrorMessages();
@@ -30,7 +28,7 @@ document.querySelector('#signupForm').addEventListener('submit',(e)=>{
             username: username,
             password: password
         };
-        fetch(SIGNUP_URL,{
+        fetch(API_URL+'auth/signup',{
             method: 'POST',
             body: JSON.stringify(user),
             headers: {

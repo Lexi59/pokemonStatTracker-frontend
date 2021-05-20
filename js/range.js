@@ -1,5 +1,3 @@
-const API_URL = "https://pokemon-stat-tracker.herokuapp.com/";
-
 document.querySelector('#eventForm').addEventListener('submit',(e)=>{
     e.preventDefault();
     clearErrorMessages();
