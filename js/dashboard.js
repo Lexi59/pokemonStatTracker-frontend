@@ -37,9 +37,9 @@ function checkForStats(){
             document.querySelector('#overallStats').style.display = 'block';
             var card = document.querySelector('#overallStatCard');
             card.appendChild(createCardPiece('<strong>Level:</strong>  '+getLevel(stats.XP)));
-            card.appendChild(createCardPiece('<strong>Total XP:</strong>  ' + stats.XP));
-            card.appendChild(createCardPiece('<strong>Total Catches:</strong>  ' + stats.catches));
-            card.appendChild(createCardPiece('<strong>Total KMs:</strong>  ' + stats.kms));
+            card.appendChild(createCardPiece('<strong>Total XP:</strong>  ' + stats.XP.toLocaleString()));
+            card.appendChild(createCardPiece('<strong>Total Catches:</strong>  ' + stats.catches.toLocaleString()));
+            card.appendChild(createCardPiece('<strong>Total KMs:</strong>  ' + stats.kms.toLocaleString()));
 
         }
     }).catch((error)=>{
@@ -67,14 +67,14 @@ function getCalculatedStats(){
         document.querySelector('#level50Date').innerHTML = '<strong>Predicted Level 50:</strong> ' + getDaysTo50(calculatedStats.totalXP,calculatedStats.averageXP);
         
         var card = document.querySelector('#personalBestsCard');
-        card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP));
+        card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP.toLocaleString()));
         var dateString = new Date(calculatedStats.mostXPDay).toLocaleDateString();
         if(calculatedStats.mostXPDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostXPDayRangeEnd).toLocaleDateString();}
         card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
         if(calculatedStats.mostXPComments){
             card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostXPComments));
         }
-        card.appendChild(createCardPiece('<strong>Most Catches:</strong>  '+ calculatedStats.mostCatches));
+        card.appendChild(createCardPiece('<strong>Most Catches:</strong>  '+ calculatedStats.mostCatches.toLocaleString()));
         dateString = new Date(calculatedStats.mostCatchesDay).toLocaleDateString();
         if(calculatedStats.mostCatchesDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostCatchesDayRangeEnd).toLocaleDateString();}
         card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
@@ -83,13 +83,13 @@ function getCalculatedStats(){
         }
 
         var card = document.querySelector('#thisWeekCard');
-        card.appendChild(createCardPiece('<strong>XP:</strong>  ' + calculatedStats.XPWeek));
-        card.appendChild(createCardPiece('<strong>Catches:</strong>  ' + calculatedStats.catchesWeek));
+        card.appendChild(createCardPiece('<strong>XP:</strong>  ' + calculatedStats.XPWeek.toLocaleString()));
+        card.appendChild(createCardPiece('<strong>Catches:</strong>  ' + calculatedStats.catchesWeek.toLocaleString()));
         card.appendChild(createCardPiece('<strong>KMs:</strong>  ' + calculatedStats.KMsWeek.toFixed(1)));
 
         var card = document.querySelector('#thisMonthCard');
-        card.appendChild(createCardPiece('<strong>XP:</strong>  ' + calculatedStats.XPMonth));
-        card.appendChild(createCardPiece('<strong>Catches:</strong>  ' + calculatedStats.catchesMonth));
+        card.appendChild(createCardPiece('<strong>XP:</strong>  ' + calculatedStats.XPMonth.toLocaleString()));
+        card.appendChild(createCardPiece('<strong>Catches:</strong>  ' + calculatedStats.catchesMonth.toLocaleString()));
         card.appendChild(createCardPiece('<strong>KMs:</strong>  ' + calculatedStats.KMsMonth.toFixed(1)));
         console.log(calculatedStats);
 
