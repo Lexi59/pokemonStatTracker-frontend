@@ -67,12 +67,16 @@ function getCalculatedStats(){
 
         var card = document.querySelector('#personalBestsCard');
         card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP));
-        card.appendChild(createCardPiece('<strong> on </strong>  ' + new Date(calculatedStats.mostXPDay).toLocaleDateString()));
+        var dateString = new Date(calculatedStats.mostXPDay).toLocaleDateString();
+        if(calculatedStats.mostXPDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostXPDayRangeEnd).toLocaleDateString();}
+        card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
         if(calculatedStats.mostXPComments){
             card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostXPComments));
         }
         card.appendChild(createCardPiece('<strong>Most Catches:</strong>  '+ calculatedStats.mostCatches));
-        card.appendChild(createCardPiece('<strong> on </strong>  ' + new Date(calculatedStats.mostCatchesDay).toLocaleDateString()));
+        dateString = new Date(calculatedStats.mostCatchesDay).toLocaleDateString();
+        if(calculatedStats.mostCatchesDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostCatchesDayRangeEnd).toLocaleDateString();}
+        card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
         if(calculatedStats.mostCatchesComments){
             card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostCatchesComments));
         }
