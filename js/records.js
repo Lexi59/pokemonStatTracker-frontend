@@ -199,7 +199,7 @@ function getRecords(){
                     `<td>`+(records[i].catches-records[i+1].catches)+`</td>`+
                     `<td>`+(records[i].stardust-records[i+1].stardust)+`</td>`+
                     `<td>`+(parseFloat(records[i].kms).toFixed(1)-parseFloat(records[i+1].kms).toFixed(1)).toFixed(1)+`</td>`+
-                    `<td>`+(records[i].luckyEggs-records[i+1].luckyEggs)+`</td>`;
+                    `<td>`+records[i].luckyEggs+`</td>`;
                 }
             }
             if(totals || (!totals && i < records.length-1)){
