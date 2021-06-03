@@ -164,6 +164,14 @@ function clearErrorMessages(){
 }
 
 function getRecords(){
+    if(totals){
+        document.getElementById('totals').classList.add('btn-primary');
+        document.getElementById('daily').classList.remove('btn-primary');
+    }
+    else{
+        document.getElementById('totals').classList.remove('btn-primary');
+        document.getElementById('daily').classList.add('btn-primary');
+    }
     clearErrorMessages();
     fetch(API_URL+'api/v1/records',{
         headers: {
@@ -174,19 +182,34 @@ function getRecords(){
         document.querySelector("#recordCards tbody").innerHTML = ""; 
         for(var i = 0; i < records.length; i++){
             var row = document.createElement('tr');
-            row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
-                        `<td>`+records[i].XP+`</td>`+
-                        `<td>`+records[i].catches+`</td>`+
-                        `<td>`+records[i].stardust+`</td>`+
-                        `<td>`+parseFloat(records[i].kms).toFixed(1)+`</td>`+
-                        `<td>`+records[i].luckyEggs+`</td>`;
-                        
-            if(records[i].comment){
-                row.innerHTML+=`<td>`+records[i].comment+`</td>`;
+            if(totals){
+                console.log("totals");
+                row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
+                `<td>`+records[i].XP+`</td>`+
+                `<td>`+records[i].catches+`</td>`+
+                `<td>`+records[i].stardust+`</td>`+
+                `<td>`+parseFloat(records[i].kms).toFixed(1)+`</td>`+
+                `<td>`+records[i].luckyEggs+`</td>`;
             }
-            else{row.innerHTML += `<td></td>`;}
-            document.querySelector('#recordCards tbody').appendChild(row);
-            row.innerHTML += `<td><button class="btn btn-success my-2 my-sm-0 ml-auto table-buttons" onclick='editEntry("`+records[i].date+`")'>✏️</button><button class="btn btn-danger my-2 my-sm-0 ml-auto table-buttons" onclick='deleteEntry("`+records[i].date+`")'>🗑️</button></td>`;
+            else{
+                if(i<records.length-1){
+                    console.log("not totals");
+                    row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
+                    `<td>`+(records[i].XP-records[i+1].XP)+`</td>`+
+                    `<td>`+(records[i].catches-records[i+1].catches)+`</td>`+
+                    `<td>`+(records[i].stardust-records[i+1].stardust)+`</td>`+
+                    `<td>`+(parseFloat(records[i].kms).toFixed(1)-parseFloat(records[i+1].kms).toFixed(1)).toFixed(1)+`</td>`+
+                    `<td>`+(records[i].luckyEggs-records[i+1].luckyEggs)+`</td>`;
+                }
+            }
+            if(totals || (!totals && i < records.length-1)){
+                if(records[i].comment){
+                    row.innerHTML+=`<td>`+records[i].comment+`</td>`;
+                }
+                else{row.innerHTML += `<td></td>`;}
+                document.querySelector('#recordCards tbody').appendChild(row);
+                row.innerHTML += `<td><button class="btn btn-success my-2 my-sm-0 ml-auto table-buttons" onclick='editEntry("`+records[i].date+`")'>✏️</button><button class="btn btn-danger my-2 my-sm-0 ml-auto table-buttons" onclick='deleteEntry("`+records[i].date+`")'>🗑️</button></td>`;
+            }
         }
     }).catch((error)=>{
         error.text().then(msg =>{
