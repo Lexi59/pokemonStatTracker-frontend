@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Info</title>
+    <link rel='stylesheet' href="../styles/bootstrap.min.css">
+    <link rel='stylesheet' href="../styles/main.css">
+    <link rel='icon' href = '../styles/favicon.ico'>
+    <script src ='../js/variables.js'></script>
+    <script>
+      if(!localStorage.token){window.location.replace('login.html');}
+    </script>
+</head>
+<body onload="checkUsername();">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="dashboard.html">Stat Tracker</a>
+            <button id= 'logout' class="btn btn-secondary my-2 my-sm-0 ml-auto" type="submit" onclick = 'logButton()'></button>
+        </nav>
+    </header>
+    <form id = 'recordForm'>
+        <fieldset>
+          <legend>Account Info</legend>
+          <div id='error'></div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label><br>
+            <a href=''>Change Password</a>
+          </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-danger">Reset</button>
+        </fieldset>
+      </form>
+
+
+    
+    <script src='../js/account.js'></script>
+    <script src = '../js/index.js'></script>
+  </body>
+</html>
