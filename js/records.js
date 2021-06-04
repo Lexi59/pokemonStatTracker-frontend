@@ -183,7 +183,6 @@ function getRecords(){
         for(var i = 0; i < records.length; i++){
             var row = document.createElement('tr');
             if(totals){
-                console.log("totals");
                 row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
                 `<td>`+records[i].XP+`</td>`+
                 `<td>`+records[i].catches+`</td>`+
@@ -193,7 +192,6 @@ function getRecords(){
             }
             else{
                 if(i<records.length-1){
-                    console.log("not totals");
                     row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
                     `<td>`+(records[i].XP-records[i+1].XP)+`</td>`+
                     `<td>`+(records[i].catches-records[i+1].catches)+`</td>`+
