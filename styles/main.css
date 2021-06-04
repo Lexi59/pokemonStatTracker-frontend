@@ -16,6 +16,9 @@ form{
     width: 23%;
     margin: 1%;
 }
+.hidden{
+    display: none;
+}
 
 #overallStats{
     width: 80%;
