@@ -6,7 +6,7 @@ form{
     width: 60%;
     margin: 1em auto;
 }
-#recordCards{
+#recordCards, #eventTable{
     width:80%;
     margin:auto;
 }
