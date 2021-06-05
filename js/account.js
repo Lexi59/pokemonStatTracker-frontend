@@ -119,6 +119,8 @@ document.querySelector('#levelForm').addEventListener('submit',(e)=>{
         }).then((response) => {
             if(response.ok){return response.json();}
                 throw response;
+        }).then((result)=>{
+            window.location.replace('dashboard.html');
         }).catch((error)=>{
             error.text().then(msg =>{
                 logErrorMessage(JSON.parse(msg).message, true);
@@ -144,6 +146,8 @@ document.querySelector('#levelForm').addEventListener('submit',(e)=>{
             }).then((response) => {
                 if(response.ok){return response.json();}
                     throw response;
+            }).then((result)=>{
+                window.location.replace('dashboard.html');
             }).catch((error)=>{
                 error.text().then(msg =>{
                     logErrorMessage(JSON.parse(msg).message, true);
@@ -152,7 +156,7 @@ document.querySelector('#levelForm').addEventListener('submit',(e)=>{
             });
         }
     }
-    window.location.replace('dashboard.html');
+    
 })
 
 function logErrorMessage(msg, levelError = false){
