@@ -44,10 +44,25 @@
             <input type='password' class='form-control' id='confirmNewPassword'>
           </div>
           </fieldset>
-          <button type="submit" class="btn btn-primary hidden" id='submit'>Submit</button>
+          <button type="submit" class="btn btn-primary hidden">Submit</button>
         </fieldset>
       </form>
-
+      <form id = 'levelForm' class = 'hidden'>
+        <fieldset>
+          <legend>Different Level</legend>
+          <div id='LevelError'></div>
+          <div class="form-group">
+            <label for="otherLevel">I'm a different level:</label><br>
+            <input type='number' class='form-control' id='otherLevel'>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" id="autocalculate" value="Auto Calc">
+            <label for="autocalculate">Auto Calculate Level</label><br>
+          </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary" >Submit</button>
+        </fieldset>
+      </form>
 
     
     <script src='../js/account.js'></script>

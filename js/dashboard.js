@@ -1,10 +1,9 @@
-
-
 const xpValues = [1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,65000,
     75000,85000,100000,120000,140000,160000,185000,210000,260000,335000,435000,
     560000,710000,900000,1100000,1350000,1650000,2000000,2500000,3000000,3750000,
     4750000,6000000,7500000,9500000,12000000,15000000,20000000,26000000,33500000,
     42500000,53500000,66500000,82000000,100000000,121000000,146000000,176000000];
+var otherLevel; 
 
 function checkUsername(){
     fetch(API_URL, {
@@ -14,10 +13,12 @@ function checkUsername(){
     }).then(res =>res.json())
     .then((result)=>{
         if(result.user){
+            getUser();
             checkForStats();
             getCalculatedStats();
             loadChart();
             document.querySelector('#welcome').textContent = "Welcome " + result.user.username + "!";
+            console.log(result.user);
         }
         else{
             localStorage.removeItem('token');
@@ -26,6 +27,23 @@ function checkUsername(){
     });
 }
 
+function getUser(){
+    fetch(API_URL+'auth/',{
+        headers: {
+            'content-type':'application/json',
+            authorization: 'Bearer ' + localStorage.token
+        }
+    }).then(res => res.json()).then(user=>{
+        console.log(user);
+        if(user.level){otherLevel = user.level;}
+        console.log(otherLevel);
+    }).catch((error)=>{
+        error.text().then(msg =>{
+            logErrorMessage(JSON.parse(msg).message);
+            console.error(JSON.parse(msg).message);
+        });
+    });
+}
 function checkForStats(){
     fetch(API_URL+'api/v1/records/stats',{
         headers: {
@@ -102,6 +120,7 @@ function getCalculatedStats(){
 }
 
 function getLevel(XP){
+    if(otherLevel){return otherLevel;}
     if(XP<xpValues[0]){return "1";}
     for(var i =0; i < xpValues.length-1; i++){
         if(XP>=xpValues[i] && XP < xpValues[i+1]){
