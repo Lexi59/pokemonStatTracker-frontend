@@ -1,4 +1,4 @@
-// add clear form button
+var len = 30; 
 
 document.querySelector('#date').value = new Date().toISOString().split('T')[0];
 
@@ -180,7 +180,8 @@ function getRecords(){
         }
     }).then(res => res.json()).then(records=>{
         document.querySelector("#recordCards tbody").innerHTML = ""; 
-        for(var i = 0; i < records.length; i++){
+        len = Math.min(records.length, len);
+        for(var i = 0; i < len; i++){
             var row = document.createElement('tr');
             if(totals){
                 row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
@@ -209,6 +210,12 @@ function getRecords(){
                 row.innerHTML += `<td><button class="btn btn-success my-2 my-sm-0 ml-auto table-buttons" onclick='editEntry("`+records[i].date+`")'>✏️</button><button class="btn btn-danger my-2 my-sm-0 ml-auto table-buttons" onclick='deleteEntry("`+records[i].date+`")'>🗑️</button></td>`;
             }
         }
+        if(records.length > len){
+            document.querySelector('#viewMore').classList.remove('hidden');
+        }
+        else {
+            document.querySelector('#viewMore').classList.add('hidden');
+        }
     }).catch((error)=>{
         error.text().then(msg =>{
             logErrorMessage(JSON.parse(msg).message);
@@ -216,4 +223,7 @@ function getRecords(){
         });
     });
 }
-
+function viewMore(){
+    len+=10;
+    getRecords();
+}
