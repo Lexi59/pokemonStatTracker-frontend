@@ -53,7 +53,8 @@
           <div id='LevelError'></div>
           <div class="form-group">
             <label for="otherLevel">I'm a different level:</label><br>
-            <input type='number' class='form-control' id='otherLevel'>
+            <input type='number' class='form-control' id='otherLevel' aria-describedby="levelHelp">
+            <small id='levelHelp' class="form-text text-muted">May take a few minutes to take effect.</small>
           </div>
           <div class="form-group">
             <input type="checkbox" id="autocalculate" value="Auto Calc">
