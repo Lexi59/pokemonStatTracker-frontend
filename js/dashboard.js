@@ -36,7 +36,6 @@ function getUser(){
     }).then(res => res.json()).then(user=>{
         console.log(user);
         if(user.level){otherLevel = user.level;}
-        console.log(otherLevel);
     }).catch((error)=>{
         error.text().then(msg =>{
             logErrorMessage(JSON.parse(msg).message);

@@ -152,8 +152,7 @@ document.querySelector('#levelForm').addEventListener('submit',(e)=>{
             });
         }
     }
-    console.log("replacing");
-    window.location.replace('dashboard.html');
+    //window.location.replace('dashboard.html');
 })
 
 function logErrorMessage(msg, levelError = false){
