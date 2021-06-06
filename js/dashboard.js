@@ -35,7 +35,11 @@ function getUser(){
         }
     }).then(res => res.json()).then(user=>{
         console.log(user);
-        if(user.level){otherLevel = user.level;}
+        if(user.level){
+            otherLevel = user.level;
+            console.log("FOUND OTHER LEVEL");
+            checkForStats();
+        }
     }).catch((error)=>{
         error.text().then(msg =>{
             logErrorMessage(JSON.parse(msg).message);
@@ -52,6 +56,7 @@ function checkForStats(){
     }).then(res => res.json()).then(stats=>{
         if(stats){
             document.querySelector('#overallStats').style.display = 'block';
+            document.querySelector('#overallStatCard').innerHTML = '';
             var card = document.querySelector('#overallStatCard');
             card.appendChild(createCardPiece('<strong>Level:</strong>  '+getLevel(stats.XP)));
             card.appendChild(createCardPiece('<strong>Total XP:</strong>  ' + stats.XP.toLocaleString()));
