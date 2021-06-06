@@ -1,6 +1,6 @@
 var len = 30; 
 
-document.querySelector('#date').value = new Date().toISOString().split('T')[0];
+document.querySelector('#date').value = new Date().toLocaleDateString();
 
 function checkUsername(){
     fetch(API_URL, {
@@ -28,7 +28,7 @@ function editEntry(date){
     }).then(res => res.json()).then(records=>{
         for(var i = 0; i < records.length; i++){
             if(records[i].date == date){
-                document.querySelector('#date').value = new Date(date).toISOString().split('T')[0];
+                document.querySelector('#date').value = new Date(date).toLocaleDateString();
                 document.querySelector('#totalOrNew').value = 'Yes';
                 document.querySelector('#XP').value = records[i].XP;
                 document.querySelector('#catches').value = records[i].catches;
@@ -80,7 +80,7 @@ function deleteEntry(date){
 
 document.querySelector('#recordForm').addEventListener('reset',(e)=>{
     e.preventDefault();
-    document.querySelector('#date').value = new Date().toISOString().split('T')[0];
+    document.querySelector('#date').value = new Date().toLocaleDateString();
     document.querySelector('#totalOrNew').value = 'Yes';
     document.querySelector('#XP').value = "";
     document.querySelector('#catches').value = "";
