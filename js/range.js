@@ -143,11 +143,11 @@ function viewStats(startDate, endDate){
                 document.querySelector('#eventStats').style.display = 'block';
                 document.querySelector('#startDateOutput').textContent = 'Start Date: ' + addDay(startDate);
                 document.querySelector('#endDateOutput').textContent = 'End Date: ' + addDay(endDate);
-                document.querySelector('#XP').textContent = 'XP: ' + stats.XP;
-                document.querySelector('#catches').textContent = 'Catches: ' + stats.catches;
-                document.querySelector('#stardust').textContent = 'Stardust: ' + stats.stardust;
+                document.querySelector('#XP').textContent = 'XP: ' + stats.XP.toLocaleString();
+                document.querySelector('#catches').textContent = 'Catches: ' + stats.catches.toLocaleString();
+                document.querySelector('#stardust').textContent = 'Stardust: ' + stats.stardust.toLocaleString();
                 document.querySelector('#kms').textContent = 'KMs: ' + stats.kms;
-                document.querySelector('#luckyEggs').textContent =  'Lucky Eggs: ' + stats.luckyEggs;
+                document.querySelector('#luckyEggs').textContent =  'Lucky Eggs: ' + stats.luckyEggs.toLocaleString();
             }
         }).catch((error)=>{
             error.text().then(msg =>{

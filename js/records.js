@@ -185,20 +185,20 @@ function getRecords(){
             var row = document.createElement('tr');
             if(totals){
                 row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
-                `<td>`+records[i].XP+`</td>`+
-                `<td>`+records[i].catches+`</td>`+
-                `<td>`+records[i].stardust+`</td>`+
+                `<td>`+records[i].XP.toLocaleString()+`</td>`+
+                `<td>`+records[i].catches.toLocaleString()+`</td>`+
+                `<td>`+records[i].stardust.toLocaleString()+`</td>`+
                 `<td>`+parseFloat(records[i].kms).toFixed(1)+`</td>`+
-                `<td>`+records[i].luckyEggs+`</td>`;
+                `<td>`+records[i].luckyEggs.toLocaleString()+`</td>`;
             }
             else{
                 if(i<records.length-1){
                     row.innerHTML = `<td>`+new Date(records[i].date).toLocaleDateString()+`</td>`+
-                    `<td>`+(records[i].XP-records[i+1].XP)+`</td>`+
-                    `<td>`+(records[i].catches-records[i+1].catches)+`</td>`+
-                    `<td>`+(records[i].stardust-records[i+1].stardust)+`</td>`+
+                    `<td>`+(records[i].XP-records[i+1].XP).toLocaleString()+`</td>`+
+                    `<td>`+(records[i].catches-records[i+1].catches).toLocaleString()+`</td>`+
+                    `<td>`+(records[i].stardust-records[i+1].stardust).toLocaleString()+`</td>`+
                     `<td>`+(parseFloat(records[i].kms).toFixed(1)-parseFloat(records[i+1].kms).toFixed(1)).toFixed(1)+`</td>`+
-                    `<td>`+records[i].luckyEggs+`</td>`;
+                    `<td>`+records[i].luckyEggs.toLocaleString()+`</td>`;
                 }
             }
             if(totals || (!totals && i < records.length-1)){
