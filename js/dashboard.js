@@ -91,17 +91,24 @@ function getCalculatedStats(){
         var card = document.querySelector('#personalBestsCard');
         card.appendChild(createCardPiece('<strong>Most XP:</strong>  '+ calculatedStats.mostXP.toLocaleString()));
         var dateString = new Date(calculatedStats.mostXPDay).toLocaleDateString();
-        if(calculatedStats.mostXPDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostXPDayRangeEnd).toLocaleDateString();}
+        if(calculatedStats.mostXPDayRangeEnd){dateString = new Date(calculatedStats.mostXPDayRangeEnd).toLocaleDateString() + ' - '+ dateString;}
         card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
         if(calculatedStats.mostXPComments){
             card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostXPComments));
         }
         card.appendChild(createCardPiece('<strong>Most Catches:</strong>  '+ calculatedStats.mostCatches.toLocaleString()));
         dateString = new Date(calculatedStats.mostCatchesDay).toLocaleDateString();
-        if(calculatedStats.mostCatchesDayRangeEnd){dateString += ' - ' + new Date(calculatedStats.mostCatchesDayRangeEnd).toLocaleDateString();}
+        if(calculatedStats.mostCatchesDayRangeEnd){dateString = new Date(calculatedStats.mostCatchesDayRangeEnd).toLocaleDateString()+ ' - '+ dateString;}
         card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
         if(calculatedStats.mostCatchesComments){
             card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostCatchesComments));
+        }
+        card.appendChild(createCardPiece('<strong>Most Stardust:</strong>  '+ calculatedStats.mostStardust.toLocaleString()));
+        dateString = new Date(calculatedStats.mostStardustDay).toLocaleDateString();
+        if(calculatedStats.mostStardustDayRangeEnd){dateString = new Date(calculatedStats.mostStardustDayRangeEnd).toLocaleDateString()+ ' - '+ dateString;}
+        card.appendChild(createCardPiece('<strong> on </strong>  ' + dateString));
+        if(calculatedStats.mostStardustComments){
+            card.appendChild(createCardPiece('<strong>Comments: </strong>  ' + calculatedStats.mostStardustComments));
         }
 
         var card = document.querySelector('#thisWeekCard');
