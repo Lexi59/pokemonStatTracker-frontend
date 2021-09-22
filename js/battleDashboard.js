@@ -103,11 +103,16 @@ function getStats() {
                         var name = key;
                         var form;
                         var pokemon;
-                        if(key.split(' ').length > 1){
+                        if(key.split(' ').length == 2){
                             name = key.split(' ')[1];
                             form = key.split(' ')[0];
                             if(form=='Alolan'){form = "Alola"}
                             pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == form));
+                        }
+                        else if (key.split(' ').length == 3){
+                            name = key.split(' ')[0];
+                            form = key.split(' ')[1];
+                            pokemon = objectArr.find(x => x.pokemon_name == name && x.form == form);
                         }
                        else{
                         pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == "Normal" || x.form == "Purified"))

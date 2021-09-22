@@ -114,6 +114,9 @@ async function getAllPokemon() {
             set.add("Galarian " + objectArr[i].pokemon_name);
           } else if (objectArr[i].form == "Shadow") {
             set.add("Shadow " + objectArr[i].pokemon_name);
+          } else if (objectArr[i].form == "Origin" || objectArr[i].form == "Altered"){
+            var legs = objectArr[i].form == "Origin"?"(Flying)":"(Legs)";
+            set.add(objectArr[i].pokemon_name + " " + objectArr[i].form + " " + legs);
           }
         }
         arr = Array.from(set);
