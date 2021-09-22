@@ -48,6 +48,11 @@ function getStats() {
             console.log(stats);
             document.querySelector('#overallStats').style.display = 'block';
             document.querySelector('#overallStatCard').innerHTML = '';
+            var mostCommonLead = 0;
+            var mostCommonLeadPokemon = "";
+            for(var key in stats.theirTeams[0]){
+                if(stats.theirTeams[0][key] > mostCommonLead){mostCommonLead = stats.theirTeams[0][key]; mostCommonLeadPokemon = key;}
+            }
             var card = document.querySelector('#overallStatCard');
             if (stats.totalWins['Great'])
                 card.appendChild(createCardPiece('<strong>Great League Wins:</strong>  ' + stats.totalWins['Great'].toLocaleString()));
@@ -55,7 +60,7 @@ function getStats() {
                 card.appendChild(createCardPiece('<strong>Ultra League Wins:</strong>  ' + stats.totalWins['Ultra'].toLocaleString()));
             if (stats.totalWins['Master'])
                 card.appendChild(createCardPiece('<strong>Master League Wins:</strong>  ' + stats.totalWins['Master'].toLocaleString()));
-
+            card.appendChild(createCardPiece(('<strong>Most Common Lead:</strong> ')+ mostCommonLeadPokemon + ' ('+mostCommonLead + ')'));
             var card = document.querySelector('#personalBestsCard');
             var dateString = new Date(stats.mostWins['day']).toLocaleDateString();
             card.appendChild(createCardPiece('<strong>Most Wins:</strong>  ' + stats.mostWins['wins'].toLocaleString()));
@@ -75,7 +80,6 @@ function getStats() {
 
             var ledWon = document.getElementById('LedWonChart').getContext('2d');
             var data = [stats.leadsVsWins['ledAndWon'], stats.leadsVsWins['ledAndLost'], stats.leadsVsWins['notLedAndWon'], stats.leadsVsWins['notLedandLost']];
-            console.log(data);
             var chart = new Chart(ledWon, {
                 type: 'bar',
                 data: {
