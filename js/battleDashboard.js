@@ -74,22 +74,26 @@ function getStats() {
 
 
             var ledWon = document.getElementById('LedWonChart').getContext('2d');
+            var data = [stats.leadsVsWins['ledAndWon'], stats.leadsVsWins['ledAndLost'], stats.leadsVsWins['notLedAndWon'], stats.leadsVsWins['notLedandLost']];
+            console.log(data);
             var chart = new Chart(ledWon, {
                 type: 'bar',
                 data: {
                     labels: ['Led-Won', 'Led-Lost', 'Not Led-Won', 'Not Led-Lost'],
                     datasets: [{
                         label: 'times',
-                        backgroundColor: 'rgb(255, 0, 0)',
-                        borderColor: 'rgb(255, 0, 0)',
-                        data: [stats.leadsVsWins['ledAndWon'], stats.leadsVsWins['ledAndLost'], stats.leadsVsWins['notLedAndWon'], stats.leadsVsWins['notLedandLost']]
+                        backgroundColor: ['rgb(255, 0, 0)','rgb(255, 0, 0)','rgb(255, 0, 0)','rgb(255, 0, 0)'],
+                        borderColor: ['rgb(255, 0, 0)','rgb(255, 0, 0)','rgb(255, 0, 0)','rgb(255, 0, 0)'],
+                        data: data
                     }]
                 },
                 options: {
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
                     },
                     title: {
                         display: true,
