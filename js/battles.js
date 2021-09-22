@@ -181,6 +181,8 @@ document.querySelector('#battleForm').addEventListener('submit', (e) => {
         });
       });
       resetForm();
+      console.log(league, document.querySelector('input[name=league]'));
+      document.getElementById(league.toLowerCase()).checked = true;
     }
   }
 })

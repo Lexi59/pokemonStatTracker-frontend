@@ -114,6 +114,7 @@ function getStats() {
                             form = key.split(' ')[1];
                             pokemon = objectArr.find(x => x.pokemon_name == name && x.form == form);
                         }
+                        else if (key == ''){}
                        else{
                         pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == "Normal" || x.form == "Purified"))
                        }
