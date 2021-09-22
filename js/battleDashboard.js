@@ -69,7 +69,7 @@ function getStats() {
                 card.appendChild(createCardPiece('<strong>Ultra League Wins:</strong>  ' + stats.totalWins['Ultra'].toLocaleString()));
             if (stats.totalWins['Master'])
                 card.appendChild(createCardPiece('<strong>Master League Wins:</strong>  ' + stats.totalWins['Master'].toLocaleString()));
-            
+
             var typesIHit = {};
 
 
@@ -77,83 +77,93 @@ function getStats() {
             var chart = new Chart(ledWon, {
                 type: 'bar',
                 data: {
-                    labels: ['Led-Won', 'Led-Lost','Not Led-Won','Not Led-Lost'],
+                    labels: ['Led-Won', 'Led-Lost', 'Not Led-Won', 'Not Led-Lost'],
                     datasets: [{
                         label: 'times',
                         backgroundColor: 'rgb(255, 0, 0)',
                         borderColor: 'rgb(255, 0, 0)',
-                        data: [stats.leadsVsWins['ledAndWon'],stats.leadsVsWins['ledAndLost'],stats.leadsVsWins['notLedAndWon'], stats.leadsVsWins['notLedandLost']]
+                        data: [stats.leadsVsWins['ledAndWon'], stats.leadsVsWins['ledAndLost'], stats.leadsVsWins['notLedAndWon'], stats.leadsVsWins['notLedandLost']]
                     }]
                 },
                 options: {
-                    scales:{
-                        y:{
+                    scales: {
+                        y: {
                             beginAtZero: true
                         }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Leads vs Wins',
+                        position: 'top'
                     }
                 }
             });
 
             fetch('https://pogoapi.net/api/v1/pokemon_types.json'
             ).then(res => res.json())
-              .then((result) => {
-                var objectArr = Object.values(result);
-                for(var i = 0; i < stats.theirTeams.length; i++){
-                    for(var key in stats.theirTeams[i]){
-                        var name = key;
-                        var form;
-                        var pokemon;
-                        if(key.split(' ').length == 2){
-                            name = key.split(' ')[1];
-                            form = key.split(' ')[0];
-                            if(form=='Alolan'){form = "Alola"}
-                            pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == form));
-                        }
-                        else if (key.split(' ').length == 3){
-                            name = key.split(' ')[0];
-                            form = key.split(' ')[1];
-                            pokemon = objectArr.find(x => x.pokemon_name == name && x.form == form);
-                        }
-                        else if (key == ''){}
-                       else{
-                        pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == "Normal" || x.form == "Purified"))
-                       }
-                       //console.log(pokemon.pokemon_name, pokemon.type, pokemon.form);
-                       if(pokemon){
-                            for(var m = 0; m < pokemon.type.length; m++){
-                                if (typesIHit[pokemon.type[m]]) {
-                                    typesIHit[pokemon.type[m]]+= stats.theirTeams[i][key];
-                                }
-                                else {
-                                    typesIHit[pokemon.type[m]] = stats.theirTeams[i][key];
+                .then((result) => {
+                    var objectArr = Object.values(result);
+                    for (var i = 0; i < stats.theirTeams.length; i++) {
+                        for (var key in stats.theirTeams[i]) {
+                            var name = key;
+                            var form;
+                            var pokemon;
+                            if (key.split(' ').length == 2) {
+                                name = key.split(' ')[1];
+                                form = key.split(' ')[0];
+                                if (form == 'Alolan') { form = "Alola" }
+                                pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == form));
+                            }
+                            else if (key.split(' ').length == 3) {
+                                name = key.split(' ')[0];
+                                form = key.split(' ')[1];
+                                pokemon = objectArr.find(x => x.pokemon_name == name && x.form == form);
+                            }
+                            else if (key == '') { }
+                            else {
+                                pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == "Normal" || x.form == "Purified"))
+                            }
+                            //console.log(pokemon.pokemon_name, pokemon.type, pokemon.form);
+                            if (pokemon) {
+                                for (var m = 0; m < pokemon.type.length; m++) {
+                                    if (typesIHit[pokemon.type[m]]) {
+                                        typesIHit[pokemon.type[m]] += stats.theirTeams[i][key];
+                                    }
+                                    else {
+                                        typesIHit[pokemon.type[m]] = stats.theirTeams[i][key];
+                                    }
                                 }
                             }
-                       }
-                       else{
-                           console.error("Couldn't find pokemon named " + key);
-                           logErrorMessage("Pokemon Name '"+key+"' not found!");
-                       }
+                            else {
+                                console.error("Couldn't find pokemon named " + key);
+                                logErrorMessage("Pokemon Name '" + key + "' not found!");
+                            }
 
+                        }
                     }
-                }
-                console.log(typesIHit);
-                var labels = [];
-                var data = [];
-                for(var key in typesIHit){labels.push(key);data.push(typesIHit[key]);}
-                var types = document.getElementById('typesIHitChart').getContext('2d');
-                var chart = new Chart(types, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        backgroundColor: ['Red','Orange','Yellow','Green','Blue','Purple','Pink','Grey','Black','Brown','DarkSalmon','ForestGreen','LightBlue','LightSalmon','LightSeaGreen','Magenta','MidnightBlue','MediumTurquoise','MediumPurple'],
-                        data: data
-                    }]
-                },
-                options: {
-                }
-            });
-              });
+                    console.log(typesIHit);
+                    var labels = [];
+                    var data = [];
+                    for (var key in typesIHit) { labels.push(key); data.push(typesIHit[key]); }
+                    var types = document.getElementById('typesIHitChart').getContext('2d');
+                    var chart = new Chart(types, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'Grey', 'Black', 'Brown', 'DarkSalmon', 'ForestGreen', 'LightBlue', 'LightSalmon', 'LightSeaGreen', 'Magenta', 'MidnightBlue', 'MediumTurquoise', 'MediumPurple'],
+                                data: data
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Types You Hit',
+                                position: 'top'
+                            }
+                        }
+                    });
+                });
         }
     }).catch((error) => {
         console.log(error);
