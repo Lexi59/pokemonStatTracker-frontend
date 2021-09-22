@@ -34,10 +34,8 @@ function getUser(){
             authorization: 'Bearer ' + localStorage.token
         }
     }).then(res => res.json()).then(user=>{
-        console.log(user);
         if(user.level){
             otherLevel = user.level;
-            console.log("FOUND OTHER LEVEL");
             checkForStats();
         }
     }).catch((error)=>{
