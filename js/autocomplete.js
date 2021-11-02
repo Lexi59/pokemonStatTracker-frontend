@@ -102,7 +102,7 @@ async function getAllPokemon() {
     var arr = [];
     await fetch('https://pogoapi.net/api/v1/pokemon_types.json'
     ).then(res => res.json())
-      .then((result) => {
+      .then(async(result) => {
         var objectArr = Object.values(result);
         var set = new Set();
         for (var i = 0; i < objectArr.length; i++) {
@@ -121,11 +121,25 @@ async function getAllPokemon() {
         }
         arr = Array.from(set);
         console.log(arr);
-  
+        await fetch('https://pogoapi.net/api/v1/shadow_pokemon.json'
+        ).then(res => res.json())
+          .then((result) => {
+            var objectArr = Object.values(result);
+            console.log(objectArr);
+            for (var i = 0; i < objectArr.length; i++) {
+              arr.push('Shadow '+ objectArr[i].name);
+            }
+
+          });
         const expiration = {
           value: arr.join(','),
           expiry: new Date().getTime() + 86400000,
         }
         window.localStorage.setItem('pokemon', JSON.stringify(expiration));
+        await getAllShadowPokemon();
       });
+  }
+
+  async function getAllShadowPokemon() {
+    
   }

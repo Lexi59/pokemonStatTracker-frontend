@@ -113,6 +113,7 @@ function getStats() {
                     var objectArr = Object.values(result);
                     for (var i = 0; i < stats.theirTeams.length; i++) {
                         for (var key in stats.theirTeams[i]) {
+                            key = key.replace(/Shadow /g, '');
                             var name = key;
                             var form;
                             var pokemon;
@@ -129,7 +130,7 @@ function getStats() {
                             }
                             else if (key == '') { }
                             else {
-                                pokemon = objectArr.find(x => x.pokemon_name == name && (x.form == "Normal" || x.form == "Purified"))
+                                pokemon = objectArr.find(x => x.pokemon_name == name)
                             }
                             //console.log(pokemon.pokemon_name, pokemon.type, pokemon.form);
                             if (pokemon) {
@@ -145,6 +146,8 @@ function getStats() {
                             else {
                                 console.error("Couldn't find pokemon named " + key);
                                 logErrorMessage("Pokemon Name '" + key + "' not found!");
+                                console.log(objectArr.find(x=>x.pokemon_name == name));
+                                console.log("HI");
                             }
 
                         }
